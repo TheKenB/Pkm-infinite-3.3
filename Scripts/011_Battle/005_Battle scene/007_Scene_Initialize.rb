@@ -61,6 +61,10 @@ class PokeBattle_Scene
       # Ability splash bars
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         @sprites["abilityBar_#{side}"] = AbilitySplashBar.new(side,@viewport)
+        if $game_switches[SWITCH_DOUBLE_ABILITIES]
+          @sprites["ability2Bar_#{side}"] = AbilitySplashBar.new(side,@viewport,true)
+          @sprites["ability2Bar_#{side}"].y = @sprites["ability2Bar_#{side}"].y+30
+        end
       end
     end
     # Player's and partner trainer's back sprite
@@ -70,7 +74,7 @@ class PokeBattle_Scene
     # Opposing trainer(s) sprites
     if @battle.trainerBattle?
       @battle.opponent.each_with_index do |p,i|
-        pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length)
+        pbCreateTrainerFrontSprite(i,p.trainer_type,@battle.opponent.length,p.sprite_override)
       end
     end
     # Data boxes and Pokémon sprites
@@ -177,8 +181,10 @@ class PokeBattle_Scene
     trainer.oy = trainer.bitmap.height
   end
 
-  def pbCreateTrainerFrontSprite(idxTrainer,trainerType,numTrainers=1)
+  def pbCreateTrainerFrontSprite(idxTrainer,trainerType,numTrainers=1,sprite_override=nil)
     trainerFile = GameData::TrainerType.front_sprite_filename(trainerType)
+    trainerFile = sprite_override if sprite_override
+
     spriteX, spriteY = PokeBattle_SceneConstants.pbTrainerPosition(1,idxTrainer,numTrainers)
     trainer = pbAddSprite("trainer_#{idxTrainer+1}",spriteX,spriteY,trainerFile,@viewport)
     return if !trainer.bitmap
