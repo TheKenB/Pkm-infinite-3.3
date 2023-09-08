@@ -90,7 +90,7 @@ module Settings
   # Number of badges in the game
   NB_BADGES = 16
   # The odds of a newly generated Pokémon being shiny (out of 65536).
-  SHINY_POKEMON_CHANCE = 16#(MECHANICS_GENERATION >= 6) ? 16 : 8
+  SHINY_POKEMON_CHANCE = 1200#(MECHANICS_GENERATION >= 6) ? 16 : 8
   # The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
   POKERUS_CHANCE = 3
   # Whether a bred baby Pokémon can inherit any TM/HM moves from its father. It
@@ -103,7 +103,7 @@ module Settings
   #=============================================================================
 
   # The amount of money the player starts the game with.
-  INITIAL_MONEY = 3000
+  INITIAL_MONEY = 6000
   # The maximum amount of money the player can have.
   MAX_MONEY = 999_999
   # The maximum number of Game Corner coins the player can have.
