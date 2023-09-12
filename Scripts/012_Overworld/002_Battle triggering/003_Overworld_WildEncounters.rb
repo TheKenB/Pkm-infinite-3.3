@@ -124,7 +124,7 @@ class PokemonEncounters
     return true if $PokemonTemp.pokeradar != nil
 
     # Get base encounter chance and minimum steps grace period
-    encounter_chance = @step_chances[enc_type].to_f
+    encounter_chance = (@step_chances[enc_type].to_f) / 2
     min_steps_needed = (8 - encounter_chance / 10).clamp(0, 8).to_f
     # Apply modifiers to the encounter chance and the minimum steps amount
     if triggered_by_step
