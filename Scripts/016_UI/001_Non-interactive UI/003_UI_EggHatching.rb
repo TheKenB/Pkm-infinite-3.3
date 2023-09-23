@@ -231,9 +231,7 @@ Events.onStepTaken += proc { |_sender,_e|
       egg.steps_to_hatch -= 1
       break
     end
-    if egg.steps_to_hatch <= 0
-      egg.steps_to_hatch = 0
-      pbHatch(egg)
-    end
+    egg.steps_to_hatch = 0
+    pbHatch(egg)
   end
 }
